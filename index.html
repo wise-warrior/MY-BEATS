@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY Beats</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-div">
+        <div class="music-container">
+            <h2 id="brand">
+                <i class="fas fa-headphones" ></i> MY BEATS 
+            </h2>
+            <!-- <h2 id="brand">MY BEATS</h2> -->
+            <h2 id="title">CHALE ANA</h2>
+            <h3 id="artist">ARMAAN MALIK</h3>
+            <div class="img-container">
+                <img src="photos/chale ana.jpg" alt="">
+            </div>
+            <audio src="song/chale ana.mp3" ></audio>
+            <!-- controls -->
+            <div class="music-controls">
+                <i class="fas fa-backward" id="prev" title="Previous"></i>
+                <i class="fas fa-play main-btn" id="play" title="Play"></i>
+                <i class="fas fa-forward" id="next" title="Next"></i>
+            </div>
+        </div>
+    </div>
+    <!-- js logic -->
+    <script>
+        // accessing all reqd entities from the html part
+        const music = document.querySelector("audio");
+        const play = document.getElementById("play");
+        const img = document.querySelector("img");
+        const artist = document.getElementById("artist");
+        const title = document.getElementById("title");
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("next");
+
+        // creating an array of objects to store the songs and their covers 
+        const songs = [
+            {
+                name:"chale ana",
+                title:"CHALE ANA",
+                artist:"ARMAAN MALIK",
+            } ,
+            {
+                name:"chod diya",
+                title:"CHHOD DIYA",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"heartless",
+                title:"ME DHOONDNE",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"humnava",
+                title:"HUMNAVA MERE",
+                artist:"JUBIN NAUTIYAL",
+            } ,
+            {
+                name:"phir chala",
+                title:"PHIR CHALA",
+                artist:"JUBIN NAUTIYAL",
+            } ,
+            {
+                name:"phir mulakaat",
+                title:"PHIR MULAKAAT",
+                artist:"JUBIN NAUTIYAL",
+            } ,
+            {
+                name:"tera sheher",
+                title:"TERA SHEHER",
+                artist:"AMAAL MALIK",
+            } ,
+            {
+                name:"tootey khaab",
+                title:"TOOTEY KHWAAB",
+                artist:"ARMAAN MALIK",
+            } ,
+            {
+                name:"wajah tum ho",
+                title:"WAJAH TUM HO",
+                artist:"ARMAAN MALIK",
+            } ,
+            {
+                name:"zaroorat",
+                title:"ZAROORAT",
+                artist:"DURAN MAIBAAM",
+            } ,
+            {
+                name:"nazm",
+                title:"NAZM NAZM",
+                artist:"ARKO MUKHERJEE",
+            } ,
+            {
+                name:"lo safar",
+                title:"LO SAFAR",
+                artist:"JUBIN NAUTIYAL",
+            } ,
+            {
+                name:"chal ghar",
+                title:"CHAL GHAR CHALE",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"dil me ho",
+                title:"DIL ME HO",
+                artist:"ARMAAN MALIK",
+            } ,
+            {
+                name:"meri ashiqui",
+                title:"MERI ASHIQUI",
+                artist:"JUBIN NAUTIYAL",
+            } ,
+            {
+                name:"parbona",
+                title:"PARBONA",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"tomake chai",
+                title:"TOMAKE CHAI",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"ke tui bol",
+                title:"KE TUI BOL",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"thoda aur",
+                title:"THODA AUR",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"tor ek katha",
+                title:"TOR EK KATHA",
+                artist:"JEET GANGULY",
+            } ,
+            {
+                name:"muskurane",
+                title:"MUSKURANE",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"barsaat",
+                title:"MUJKO BARSAAT",
+                artist:"ARMAAN MALIK",
+            } ,
+            {
+                name:"phir bhi tumko",
+                title:"PHIR BHI TUMKO",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"hue bechen",
+                title:"HUE BECHEN",
+                artist:"YASSER DESAI",
+            } ,
+            {
+                name:"dil mang raha",
+                title:"DIL MANG RAHA",
+                artist:"YASSER DESAI",
+            } ,
+            {
+                name:"roy",
+                title:"SOORAJ DOOBA",
+                artist:"ARIJIT SINGH",
+            } ,
+            {
+                name:"tum hi ana",
+                title:"TUM HI ANA",
+                artist:"JUBIN NAUTIYAL",
+            } ,
+            {
+                name:"dekhte dekhte",
+                title:"DEKHTE DEKHTE",
+                artist:"ATIF ASLAM",
+            } ,
+            {
+                name:"kya tuje ab",
+                title:"KYA TUJE AB",
+                artist:"FALAK SHABIR",
+            } ,
+            {
+                name:"thodi jagah",
+                title:"THODI JAGAH",
+                artist:"TANISHQ BAGHCHI",
+            } ,
+        ];
+        // this variable decides whether to play / pause a song on clicking the play btn
+        let playing = false;
+
+        // play function logic : we create a callback func() wherein we make playing var 
+        // true indicating to play the music via play() and while the music is playing , 
+        // we replace the play icon by pause icon and all the while the music cover keeps 
+        // rotating due the anime class animation via css being added !!
+        const playMusic = () => {
+            playing = true;
+            music.play();
+            play.classList.replace('fa-play','fa-pause');
+            img.classList.add("anime");
+        };
+
+        // pause function logic : Similar to play logic ; here we make playing variable false
+        // so as to pause the music (via pause () event) ! Meanwhile , we also replace the pause 
+        // icon with the play one ; and also remove the rotating music cover animation class !!
+        const pauseMusic = () => {
+            playing = false;
+            music.pause();
+            play.classList.replace('fa-pause' , 'fa-play');
+            img.classList.remove("anime");
+        };
+
+        // here is where the play / pause functionality is coded : we actually add an event listener
+        // such that as the play button is clicked , a callback () is fired inside which the value of
+        // playing variable is checked ; if its true then pauseMusic() called to pause the song or else
+        // playMusic() called to play the music which is paused !!
+        play.addEventListener('click' , () =>{
+            // if (playing){
+            //     pauseMusic();
+            // }
+            // else{
+            //     playMusic();
+            // }
+            playing ? pauseMusic() : playMusic();
+        });
+
+        // change the music logic : here we code the logic of changing the songs as next / prev 
+        // btns being pressed ! actually we change the name of music , singer name , music and cover 
+        // src on the next / prev being clicked ; these are the attributes of all the songs contained 
+        // in the above made array of objects !!
+        const loadsong = (songs) => {
+            title.textContent = songs.title;
+            artist.textContent = songs.artist;
+            music.src = "song/" + songs.name + ".mp3";
+            img.src = "photos/" + songs.name + ".jpg";
+        };
+
+        // this var songidx does the indexing of the songs so as to decide the next 
+        // and prev songs to be played !!
+        songidx = 0;
+        // loadsong(songs[2]);
+
+        // next song play logic : we define a const callback func called nextsong() 
+        // which goes to the next song and plays it as the next btn is being clicked ! 
+        // the songs are shuffled like a circular array and as the list ends it again
+        // points back to the first song in the list !!
+        const nextsong = () => {
+            songidx = (songidx + 1) % songs.length;
+            loadsong(songs[songidx]);
+            playMusic();
+        };
+
+        // prev song play logic : Similar to next song play logic , here we develop the
+        // functionality that as soon as the prev btn clicked , the prev song starts 
+        // playing !!
+        const prevsong = () => {
+            songidx = (songidx - 1 + songs.length) % songs.length;
+            loadsong(songs[songidx]);
+            playMusic();
+        };
+
+        // music autoplay logic : here the autoplay functionality is coded , i.e., as soon
+        // as a song ends , the next song will start playing . this is done by adding an 
+        // event listener to the main music object which calls the nextsong() as a current
+        // playing song ends !!
+        music.addEventListener("ended" , nextsong);
+
+        // next and prev btn logic func calls -->
+        next.addEventListener('click' , nextsong);
+        prev.addEventListener('click' , prevsong);
+
+    </script>
+</body>
+</html>
